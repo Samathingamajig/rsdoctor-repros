@@ -1,0 +1,15 @@
+{
+  "name": "rsdoctor-repro-fallback-newlines",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rspack build",
+    "build:small": "rspack build --env small",
+    "inflate": "node inflate-section.mjs .rsdoctor/manifest.json"
+  },
+  "dependencies": {
+    "@rsdoctor/core": "2.0.1",
+    "@rspack/cli": "2.3.0",
+    "@rspack/core": "2.3.0"
+  }
+}
