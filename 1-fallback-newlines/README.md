@@ -39,3 +39,31 @@ jq empty padded.json
 
 The build takes about 5 seconds and peaks around 4.5 GB RSS. Afterwards, run
 `rm -rf padding dist .rsdoctor small.json padded.json` to free about 1.7 GB.
+
+## Unit tests
+
+Below are some sample tests to be put in `packages/core/tests/utils/json.test.ts`.
+
+Notice that `Json.stringify` comes from `packages/core/src/build-utils/build/json.ts`, not the builtin `JSON` module.
+
+```ts
+it('preserves escaped newlines in string values', async () => {
+  const data = {
+    newline: 'line1\nline2',
+    windowsPath: 'C:\\new\\path',
+    backslashBeforeQuote: 'a\\n"b',
+  };
+
+  for (const chunkSize of [undefined, 5]) {
+    const chunks = (await Json.stringify(
+      data,
+      undefined,
+      undefined,
+      undefined,
+      chunkSize,
+    )) as unknown as string[];
+
+    expect(JSON.parse(chunks.join(''))).toStrictEqual(data);
+  }
+});
+```
