@@ -1,0 +1,17 @@
+{
+  "name": "rsdoctor-repro-multi-compiler-analyze-switch",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rspack build",
+    "build:live": "rspack build --env live",
+    "analyze": "rsdoctor analyze --profile dist/web/.rsdoctor/manifest.json",
+    "analyze:worker": "rsdoctor analyze --profile dist/web/.rsdoctor/compilers/worker/manifest.json"
+  },
+  "dependencies": {
+    "@rsdoctor/cli": "2.0.3",
+    "@rsdoctor/core": "2.0.3",
+    "@rspack/cli": "2.3.2",
+    "@rspack/core": "2.3.2"
+  }
+}
